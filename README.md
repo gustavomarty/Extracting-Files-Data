@@ -32,5 +32,11 @@ Extracting and Indexing files data with Tika, Elasticsearch and WordNet to apply
     
 
 
-
 TODO: extract content from files
+
+
+## References
+
+https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html
+
+https://wordnet.princeton.edu/
