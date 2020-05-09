@@ -50,6 +50,8 @@ namespace ExtractingIndexingFilesData
         {
             var client = GetClient();
 
+            client.DeleteIndexAsync(_indexName);
+
             var createIndexResponse = client.CreateIndex($"{_indexName}", c => c
                 .Settings(s => s
                     .Analysis(a => a
@@ -57,6 +59,10 @@ namespace ExtractingIndexingFilesData
                             .Custom("synonym", sy => sy
                                 .Tokenizer("whitespace")
                                 .Filters("synonym")
+                            )
+                            .Custom("word_delimiter", sy => sy
+                                .Tokenizer("whitespace")
+                                .Filters("word_delimiter_graph")
                             )
                         )
                         .TokenFilters(tf => tf  

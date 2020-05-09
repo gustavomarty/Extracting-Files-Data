@@ -10,7 +10,7 @@ namespace ExtractingIndexingFilesData
         public string Title { get; set; }
         [Text]
         public string Author { get; set; }
-        [Text(Analyzer = "synonym")]
+        [Text(Analyzer = "word_delimiter", SearchAnalyzer = "synonym")]
         public string Body { get; set; }
         [Text]
         public string ContentType { get; set; }
