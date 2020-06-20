@@ -12,7 +12,7 @@ namespace ExtractingIndexingFilesData
         /// <summary>
         /// Default name of index
         /// </summary>
-        private static string _indexName = "article";
+        private static string _indexName = "songs";
         #endregion
 
         #region GetClient
@@ -34,11 +34,11 @@ namespace ExtractingIndexingFilesData
         /// Index a document
         /// </summary>
         /// <param name="article"></param>
-        public static void Index(Article article)
+        public static void Index(Music music)
         {
             var client = GetClient();
 
-            client.Index(new IndexRequest<Article>(article, _indexName));
+            client.Index(new IndexRequest<Music>(music, _indexName));
         }
         #endregion
 
@@ -66,7 +66,7 @@ namespace ExtractingIndexingFilesData
                             )
                         )
                         .TokenFilters(tf => tf
-                            .Synonym("synonym", s => s
+                            .Synonym("synonym", ss => ss
                                 .Format(SynonymFormat.WordNet)
                                 .SynonymsPath("analysis/wn_s.pl")
                                 )
@@ -74,7 +74,7 @@ namespace ExtractingIndexingFilesData
                     )
                 )
                 .Mappings(m => m
-                    .Map<Article>(mm => mm
+                    .Map<Music>(mm => mm
                         .AutoMap()
                     )
                 )
