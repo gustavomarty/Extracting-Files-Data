@@ -58,14 +58,14 @@ namespace ExtractingIndexingFilesData
                         .Analyzers(aa => aa
                             .Custom("synonym", sy => sy
                                 .Tokenizer("whitespace")
-                                .Filters("synonym")
+                                .Filters("synonym", "porter_stem")
                             )
                             .Custom("word_delimiter", sy => sy
                                 .Tokenizer("whitespace")
-                                .Filters("word_delimiter_graph")
+                                .Filters("word_delimiter_graph", "porter_stem")
                             )
                         )
-                        .TokenFilters(tf => tf  
+                        .TokenFilters(tf => tf
                             .Synonym("synonym", s => s
                                 .Format(SynonymFormat.WordNet)
                                 .SynonymsPath("analysis/wn_s.pl")
